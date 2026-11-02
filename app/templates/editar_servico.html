@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar Serviço - Barbearia Sr. Dio</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #222;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 20px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .mensagem {
+            padding: 10px;
+            margin-top: 10px;
+            background: #e2f5e7;
+            color: #216b35;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #222;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Barbearia Sr. Dio</h1>
+    <h2>Editar Serviço</h2>
+
+    {% with mensagens = get_flashed_messages() %}
+        {% for mensagem in mensagens %}
+            <div class="mensagem">{{ mensagem }}</div>
+        {% endfor %}
+    {% endwith %}
+
+    <form method="POST">
+
+        <label for="nome">Nome do serviço:</label>
+        <input
+            type="text"
+            id="nome"
+            name="nome"
+            maxlength="100"
+            value="{{ servico.nome }}"
+            required
+        >
+
+        <label for="descricao">Descrição:</label>
+        <textarea
+            id="descricao"
+            name="descricao"
+            rows="3"
+        >{{ servico.descricao or "" }}</textarea>
+
+        <label for="preco">Preço (R$):</label>
+        <input
+            type="number"
+            id="preco"
+            name="preco"
+            min="0.01"
+            step="0.01"
+            value="{{ servico.preco }}"
+            required
+        >
+
+        <label for="duracao">Duração (minutos):</label>
+        <input
+            type="number"
+            id="duracao"
+            name="duracao"
+            min="1"
+            step="1"
+            value="{{ servico.duracao }}"
+            required
+        >
+
+        <button type="submit">Salvar Alterações</button>
+
+    </form>
+
+    <br>
+
+    <a href="{{ url_for('main.servicos') }}">
+        Voltar para serviços
+    </a>
+
+</div>
+
+</body>
+</html>
