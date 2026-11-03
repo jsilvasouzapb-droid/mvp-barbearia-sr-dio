@@ -1,0 +1,98 @@
+
+{% extends "base.html" %}
+
+{% block title %}Início - SR. DIO Barbearia{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-conteudo">
+
+        <span class="hero-destaque">SR. DIO BARBEARIA</span>
+
+        <h1>
+            Seu estilo merece<br>
+            <span>um atendimento exclusivo.</span>
+        </h1>
+
+        <p>
+            Mais que um corte, uma experiência.
+            Agende seu horário e venha conhecer
+            o padrão SR. DIO de qualidade.
+        </p>
+
+        <div class="hero-acoes">
+            <a href="{{ url_for('main.servicos') }}" class="btn">
+                Conhecer serviços
+            </a>
+
+            <a href="{{ url_for('main.clientes') }}"
+               class="btn btn-secundario">
+                Área de clientes
+            </a>
+        </div>
+
+    </div>
+
+    <div class="hero-imagem">
+        <div class="hero-logo">
+            <span>SR.</span>
+            <strong>DIO</strong>
+            <small>BARBEARIA</small>
+        </div>
+    </div>
+
+</section>
+
+<section class="apresentacao">
+
+    <h2 class="titulo">Excelência em cada detalhe</h2>
+
+    <p class="subtitulo">
+        Na SR. DIO, acreditamos que cuidar da aparência
+        também é uma forma de expressar personalidade.
+        Oferecemos atendimento de qualidade em um ambiente
+        pensado para proporcionar conforto e estilo.
+    </p>
+
+</section>
+
+<section class="cards">
+
+    <div class="card">
+        <h3>Nossos serviços</h3>
+
+        <p>
+            Conheça os serviços disponíveis,
+            seus valores e duração.
+        </p>
+
+        <br>
+
+        <a href="{{ url_for('main.servicos') }}" class="btn">
+            Ver serviços
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>Atendimento</h3>
+
+        <p>
+            Nosso objetivo é proporcionar
+            praticidade e qualidade em cada atendimento.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Agendamento</h3>
+
+        <p>
+            Em breve, você poderá escolher seu profissional,
+            selecionar o horário e confirmar seu agendamento.
+        </p>
+    </div>
+
+</section>
+
+{% endblock %}

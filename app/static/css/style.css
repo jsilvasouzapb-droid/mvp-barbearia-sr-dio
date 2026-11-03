@@ -1,0 +1,389 @@
+
+/*SR. DIO - IDENTIDADE VISUAl */
+
+:root {
+    --cor-fundo: #101114;
+    --cor-card: #1a1b20;
+    --cor-card-hover: #222329;
+    --cor-dourado: #c5a15b;
+    --cor-dourado-hover: #dfbd78;
+    --cor-texto: #f5f5f5;
+    --cor-texto-secundario: #a5a5a5;
+    --cor-borda: #34343a;
+    --cor-erro: #e05252;
+    --cor-sucesso: #43b581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    min-height: 100vh;
+}
+
+/* CABEÇALHO */
+
+.topo {
+    background: #17181d;
+    border-bottom: 1px solid var(--cor-borda);
+    padding: 20px 5%;
+}
+
+.topo-conteudo {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo {
+    color: var(--cor-dourado);
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-decoration: none;
+}
+
+.logo span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+/* MENU */
+
+.menu {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.menu a:hover,
+.menu a.ativo {
+    color: var(--cor-dourado);
+}
+
+/* CONTEÚDO */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 45px auto;
+}
+
+.titulo {
+    color: var(--cor-dourado);
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    color: var(--cor-texto-secundario);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.card {
+    background: var(--cor-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    background: var(--cor-card-hover);
+    border-color: var(--cor-dourado);
+    transform: translateY(-3px);
+}
+
+.card h3 {
+    color: var(--cor-dourado);
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--cor-texto-secundario);
+    line-height: 1.6;
+}
+
+/* FORMULÁRIOS */
+
+.formulario {
+    background: var(--cor-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 35px;
+}
+
+.form-grupo {
+    margin-bottom: 20px;
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--cor-texto);
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 13px;
+    background: #111216;
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda);
+    border-radius: 7px;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--cor-dourado);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* BOTÕES */
+
+.btn {
+    display: inline-block;
+    padding: 13px 22px;
+    background: var(--cor-dourado);
+    color: #151515;
+    border: none;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: var(--cor-dourado-hover);
+}
+
+.btn-secundario {
+    background: #34343a;
+    color: white;
+}
+
+.btn-perigo {
+    background: var(--cor-erro);
+    color: white;
+}
+
+/* LISTAGEM */
+
+.lista-item {
+    background: var(--cor-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 9px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.lista-item h3 {
+    color: var(--cor-dourado);
+    margin-bottom: 10px;
+}
+
+.lista-item p {
+    color: var(--cor-texto-secundario);
+    margin: 7px 0;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+/* MENSAGENS */
+
+.mensagem {
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    background: #203d30;
+    color: #8ee0b5;
+    border: 1px solid var(--cor-sucesso);
+}
+
+.mensagem.erro {
+    background: #421f23;
+    color: #ffaaaa;
+    border-color: var(--cor-erro);
+}
+
+/* RODAPÉ */
+
+.rodape {
+    text-align: center;
+    padding: 25px;
+    color: var(--cor-texto-secundario);
+    border-top: 1px solid var(--cor-borda);
+    margin-top: 60px;
+    font-size: 13px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+    .topo-conteudo {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .formulario {
+        padding: 20px;
+    }
+
+    .titulo {
+        font-size: 23px;
+    }
+}
+
+
+/* PÁGINA INICIAL */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    gap: 40px;
+    min-height: 400px;
+    padding: 35px 0;
+}
+
+.hero-destaque {
+    color: var(--cor-dourado);
+    letter-spacing: 4px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.hero-conteudo h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin: 22px 0;
+}
+
+.hero-conteudo h1 span {
+    color: var(--cor-dourado);
+}
+
+.hero-conteudo p {
+    color: var(--cor-texto-secundario);
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 25px;
+}
+
+.hero-acoes {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hero-imagem {
+    min-height: 300px;
+    background:
+        radial-gradient(circle, #34302a, #17181d 70%);
+    border: 1px solid var(--cor-dourado);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-logo {
+    text-align: center;
+    color: var(--cor-dourado);
+}
+
+.hero-logo span {
+    display: block;
+    font-size: 35px;
+    letter-spacing: 8px;
+}
+
+.hero-logo strong {
+    display: block;
+    font-size: 75px;
+    letter-spacing: 8px;
+}
+
+.hero-logo small {
+    display: block;
+    letter-spacing: 7px;
+}
+
+.apresentacao {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.apresentacao .subtitulo {
+    max-width: 750px;
+    margin: 15px auto;
+}
+
+@media (max-width: 700px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-conteudo h1 {
+        font-size: 32px;
+    }
+
+    .hero-imagem {
+        min-height: 230px;
+    }
+}

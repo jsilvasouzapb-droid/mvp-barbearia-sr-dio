@@ -1,199 +1,84 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gerenciamento de Serviços - Barbearia Sr. Dio</title>
+{% extends "base.html" %}
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 30px;
-        }
+{% block title %}Editar Serviço - SR. DIO Barbearia{% endblock %}
 
-        .container {
-            max-width: 750px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-        }
+{% block content %}
 
-        h1, h2 {
-            text-align: center;
-            color: #222;
-        }
+<h1 class="titulo">Editar Serviço</h1>
 
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
+<p class="subtitulo">
+    Atualize as informações do serviço selecionado.
+</p>
 
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 6px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+<div class="formulario">
 
-        button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 20px;
-            background-color: #222;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    <form method="POST">
 
-        button:hover {
-            background-color: #444;
-        }
+        <div class="form-grupo">
+            <label for="nome">Nome do serviço:</label>
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                maxlength="100"
+                value="{{ servico.nome }}"
+                required
+            >
+        </div>
 
-        .mensagem {
-            padding: 10px;
-            margin-top: 10px;
-            background: #e2f5e7;
-            color: #216b35;
-            border-radius: 5px;
-        }
+        <div class="form-grupo">
+            <label for="descricao">Descrição:</label>
+            <textarea
+                id="descricao"
+                name="descricao"
+                rows="3"
+            >{{ servico.descricao or "" }}</textarea>
+        </div>
 
-        .servico {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
+        <div class="form-grupo">
+            <label for="preco">Preço (R$):</label>
+            <input
+                type="number"
+                id="preco"
+                name="preco"
+                min="0.01"
+                step="0.01"
+                value="{{ servico.preco }}"
+                required
+            >
+        </div>
 
-        a {
-            color: #222;
-        }
-    </style>
-</head>
+        <div class="form-grupo">
+            <label for="duracao">Duração (minutos):</label>
+            <input
+                type="number"
+                id="duracao"
+                name="duracao"
+                min="1"
+                step="1"
+                value="{{ servico.duracao }}"
+                required
+            >
+        </div>
 
-<body>
+        <div class="acoes">
 
-<div class="container">
+            <button type="submit" class="btn">
+                Salvar alterações
+            </button>
 
-    <h1>Barbearia Sr. Dio</h1>
-
-    <h2>Cadastro de Serviços</h2>
-
-    {% with mensagens = get_flashed_messages(with_categories=true) %}
-        {% for categoria, mensagem in mensagens %}
-            <div class="mensagem">
-                {{ mensagem }}
-            </div>
-        {% endfor %}
-    {% endwith %}
-
-    <form method="POST" action="{{ url_for('main.servicos') }}">
-
-        <label for="nome">Nome do serviço:</label>
-        <input
-            type="text"
-            id="nome"
-            name="nome"
-            maxlength="100"
-            required
-        >
-
-        <label for="descricao">Descrição:</label>
-        <textarea
-            id="descricao"
-            name="descricao"
-            rows="3"
-        ></textarea>
-
-        <label for="preco">Preço (R$):</label>
-        <input
-            type="number"
-            id="preco"
-            name="preco"
-            min="0.01"
-            step="0.01"
-            required
-        >
-
-        <label for="duracao">Duração (minutos):</label>
-        <input
-            type="number"
-            id="duracao"
-            name="duracao"
-            min="1"
-            step="1"
-            required
-        >
-
-        <button type="submit">Cadastrar Serviço</button>
-
-    </form>
-
-    <hr>
-
-    <h2>Serviços cadastrados</h2>
-
-    
-{% if servicos %}
-
-    {% for servico in servicos %}
-
-        <div class="servico">
-
-            <strong>{{ servico.nome }}</strong><br>
-
-            Descrição:
-            {{ servico.descricao or "Não informada" }}<br>
-
-            Preço:
-            R$ {{ "%.2f"|format(servico.preco) }}<br>
-
-            Duração:
-            {{ servico.duracao }} minutos<br>
-
-            Situação:
-            {{ "Ativo" if servico.ativo else "Inativo" }}
-
-            <br><br>
-
-            <a href="{{ url_for('main.editar_servico', id=servico.id) }}">
-                Editar serviço
-                
-<br>
-
-<form
-    method="POST"
-    action="{{ url_for('main.excluir_servico', id=servico.id) }}"
-    onsubmit="return confirm('Tem certeza que deseja excluir este serviço?');"
->
-    <button type="submit" style="background-color: #b22222;">
-        Excluir serviço
-    </button>
-</form>
-
+            <a
+                href="{{ url_for('main.servicos') }}"
+                class="btn btn-secundario"
+            >
+                Cancelar
             </a>
 
         </div>
 
-    {% endfor %}
-
-{% else %}
-
-    <p>Nenhum serviço cadastrado ainda.</p>
-
-{% endif %}
-
-    <br>
-
-    <a href="/">Voltar para página inicial</a>
+    </form>
 
 </div>
 
-</body>
-</html>
-
+{% endblock %}

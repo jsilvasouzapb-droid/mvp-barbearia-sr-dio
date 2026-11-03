@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}SR. DIO - Barbearia{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="topo">
+    <div class="topo-conteudo">
+
+        <a href="{{ url_for('main.inicio') }}" class="logo">
+            SR. DIO
+            <span>BARBEARIA</span>
+        </a>
+
+        <nav class="menu">
+            <a href="{{ url_for('main.inicio') }}">Início</a>
+
+            <a href="{{ url_for('main.clientes') }}">Clientes</a>
+
+            <a href="{{ url_for('main.servicos') }}">Serviços</a>
+        </nav>
+
+    </div>
+</header>
+
+<main class="container">
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% for categoria, mensagem in mensagens %}
+            <div class="mensagem {% if categoria == 'error' %}erro{% endif %}">
+                {{ mensagem }}
+            </div>
+        {% endfor %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+<footer class="rodape">
+    <p>SR. DIO BARBEARIA</p>
+    <p>Estilo, elegância e tradição.</p>
+    <p>&copy; 2026 - Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

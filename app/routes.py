@@ -18,13 +18,8 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def inicio():
-    return """
-    <h1>Barbearia Sr. Dio</h1>
-    <p>Sistema de gerenciamento de clientes e agendamentos.</p>
-    <a href="/clientes">Acessar cadastro de clientes</a>
-    """
-
-
+    return render_template("inicio.html")
+    
 @main.route("/teste-banco")
 def teste_banco():
     from sqlalchemy import text
