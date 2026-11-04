@@ -1,17 +1,19 @@
 
 {% extends "base.html" %}
 
-{% block title %}Editar Serviço - SR. DIO Barbearia{% endblock %}
+{% block title %}Serviços - SR. DIO Barbearia{% endblock %}
 
 {% block content %}
 
-<h1 class="titulo">Editar Serviço</h1>
+<h1 class="titulo">Serviços</h1>
 
 <p class="subtitulo">
-    Atualize as informações do serviço selecionado.
+    Cadastre e gerencie os serviços da barbearia.
 </p>
 
 <div class="formulario">
+
+    <h2>Cadastrar novo serviço</h2>
 
     <form method="POST">
 
@@ -22,7 +24,6 @@
                 id="nome"
                 name="nome"
                 maxlength="100"
-                value="{{ servico.nome }}"
                 required
             >
         </div>
@@ -33,7 +34,7 @@
                 id="descricao"
                 name="descricao"
                 rows="3"
-            >{{ servico.descricao or "" }}</textarea>
+            ></textarea>
         </div>
 
         <div class="form-grupo">
@@ -44,7 +45,6 @@
                 name="preco"
                 min="0.01"
                 step="0.01"
-                value="{{ servico.preco }}"
                 required
             >
         </div>
@@ -57,28 +57,73 @@
                 name="duracao"
                 min="1"
                 step="1"
-                value="{{ servico.duracao }}"
                 required
             >
         </div>
 
-        <div class="acoes">
-
-            <button type="submit" class="btn">
-                Salvar alterações
-            </button>
-
-            <a
-                href="{{ url_for('main.servicos') }}"
-                class="btn btn-secundario"
-            >
-                Cancelar
-            </a>
-
-        </div>
+        <button type="submit" class="btn">
+            Cadastrar serviço
+        </button>
 
     </form>
 
 </div>
 
+<div class="lista">
+
+    <h2>Serviços cadastrados</h2>
+
+    {% for servico in servicos %}
+
+        <div class="card">
+
+            <h3>{{ servico.nome }}</h3>
+
+            <p>{{ servico.descricao or "Sem descrição." }}</p>
+
+            <p>
+                <strong>Preço:</strong>
+                R$ {{ "%.2f"|format(servico.preco) }}
+            </p>
+
+            <p>
+                <strong>Duração:</strong>
+                {{ servico.duracao }} minutos
+            </p>
+
+            <div class="acoes">
+
+                <a
+                    href="{{ url_for('main.editar_servico', id=servico.id) }}"
+                    class="btn"
+                >
+                    Editar
+                </a>
+
+                <form
+                    method="POST"
+                    action="{{ url_for('main.excluir_servico', id=servico.id) }}"
+                >
+                    <button
+                        type="submit"
+                        class="btn btn-secundario"
+                        onclick="return confirm('Deseja realmente excluir este serviço?')"
+                    >
+                        Excluir
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <p>Nenhum serviço cadastrado.</p>
+
+    {% endfor %}
+
+</div>
+
 {% endblock %}
+
