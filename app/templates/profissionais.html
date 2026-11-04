@@ -1,0 +1,83 @@
+
+{% extends "base.html" %}
+
+{% block title %}Profissionais - SR. DIO Barbearia{% endblock %}
+
+{% block content %}
+
+<h1 class="titulo">Profissionais</h1>
+
+<p class="subtitulo">
+    Cadastre e gerencie os profissionais da SR. DIO.
+</p>
+
+<div class="formulario">
+
+    <h2 class="titulo">Novo profissional</h2>
+
+    <form method="POST" action="{{ url_for('main.profissionais') }}">
+
+        <div class="form-grupo">
+            <label for="nome">Nome completo:</label>
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                maxlength="100"
+                placeholder="Digite o nome do profissional"
+                required
+            >
+        </div>
+
+        <div class="form-grupo">
+            <label for="telefone">Telefone:</label>
+            <input
+                type="tel"
+                id="telefone"
+                name="telefone"
+                maxlength="20"
+                placeholder="Digite o telefone"
+            >
+        </div>
+
+        <button type="submit" class="btn">
+            Cadastrar profissional
+        </button>
+
+    </form>
+
+</div>
+
+<h2 class="titulo">Profissionais cadastrados</h2>
+
+{% if profissionais %}
+
+    {% for profissional in profissionais %}
+
+        <div class="lista-item">
+
+            <h3>{{ profissional.nome }}</h3>
+
+            <p>
+                <strong>Telefone:</strong>
+                {{ profissional.telefone or "Não informado" }}
+            </p>
+
+            <p>
+                <strong>Situação:</strong>
+                {{ "Ativo" if profissional.ativo else "Inativo" }}
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <div class="card">
+        <p>Nenhum profissional cadastrado.</p>
+    </div>
+
+{% endif %}
+
+{% endblock %}

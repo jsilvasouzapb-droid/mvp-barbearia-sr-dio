@@ -1,0 +1,82 @@
+
+{% extends "base.html" %}
+
+{% block title %}Agendamentos - SR. DIO Barbearia{% endblock %}
+
+{% block content %}
+
+<h1 class="titulo">Agendamento de Atendimento</h1>
+
+<p class="subtitulo">
+    Escolha o cliente, serviço, profissional, data e horário.
+</p>
+
+<div class="formulario">
+
+    <form method="POST" action="{{ url_for('main.agendamento') }}">
+
+        <div class="form-grupo">
+            <label for="cliente_id">Cliente:</label>
+            <select id="cliente_id" name="cliente_id" required>
+                <option value="">Selecione um cliente</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente.id }}">
+                        {{ cliente.nome }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-grupo">
+            <label for="servico_id">Serviço:</label>
+            <select id="servico_id" name="servico_id" required>
+                <option value="">Selecione um serviço</option>
+                {% for servico in servicos %}
+                    <option value="{{ servico.id }}">
+                        {{ servico.nome }} - R$ {{ "%.2f"|format(servico.preco) }} ({{ servico.duracao }} min)
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-grupo">
+            <label for="profissional_id">Profissional:</label>
+            <select id="profissional_id" name="profissional_id" required>
+                <option value="">Selecione um profissional</option>
+                {% for profissional in profissionais %}
+                    <option value="{{ profissional.id }}">
+                        {{ profissional.nome }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-grupo">
+            <label for="data">Data:</label>
+            <input
+                type="date"
+                id="data"
+                name="data"
+                required
+            >
+        </div>
+
+        <div class="form-grupo">
+            <label for="horario">Horário:</label>
+            <input
+                type="time"
+                id="horario"
+                name="horario"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn">
+            Confirmar agendamento
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
